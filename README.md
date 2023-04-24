@@ -3,9 +3,9 @@
 
 ## Description
 
-HTTP Web Go app which converts office documents (word) to a PDF and saves it back on Salesforce. Salesforce sends the ContentVersionId of the document to convert, the app queries Salesforce, retrieve the document, convert the office document to a PDF through LibreOfficeKit and save the PDF back to Salesforce. It's linked to the Parent ID provided in the request.
+An HTTP Web Go app designed to convert office documents (such as Word files) into PDFs and save them back to Salesforce. Salesforce sends the ContentVersionId of the document to be converted, the parent ID to which the PDF will be uploaded to; the app then queries Salesforce, retrieves the document, and converts the office document into a PDF using LibreOfficeKit. Afterward, the PDF is saved back to Salesforce and linked to the Parent ID provided in the request.
 
-The Salesforce session ID is sent also from Salesforce, so that the lambda doesn't perform any authentication
+The Salesforce session ID is also sent from Salesforce, which allows the lambda function to bypass any authentication process.
 
 
 ## Pre-requisite
@@ -13,6 +13,7 @@ The Salesforce session ID is sent also from Salesforce, so that the lambda doesn
 The applications comprise two primary tasks, each running on a separate Lambda function:
 
 1- Rename `Makefile.sample` to `Makefile`
+
 2- Populate variables in `Makefile`:
 - `IMAGE_NAME` e.g. sfdc_libreoffice
 - `REGION_ID` e.g. us-east-1
@@ -50,6 +51,7 @@ The applications comprise two primary tasks, each running on a separate Lambda f
 
 ## Run
 
-From the Salesforce Console
+From the Salesforce Console:
+
 `new AwsLambdaInvoke().invokeLambda('0686T00000QfQjQQAD', '500d0000005e07B');`
 
